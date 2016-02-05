@@ -26,7 +26,6 @@ def main():
     fishnet_CD['FID_1']=[x-1 for x in fishnet_CD.gid]
     row_count = 256  ## Number of squares per row
     rings = 2 ## Number of "spheres of influence"
-    print len(fishnet_CD)
 
 
 ## Find neighbors and get their FIDs
@@ -60,8 +59,9 @@ def main():
             nb = []
             for j in [-1,1]:
                 for i in range(0,rings+1,1):
-                    
+                    print "ok"
                     fishnet_CD.ix[index+j*i*row_count-rings:index+j*i*row_count+rings,'resi_neighbor']=1
+                    print fishnet_CD.ix[index+j*i*row_count-rings:index+j*i*row_count+rings,'resi_neighbor']
                     fishnet_CD.ix[index+i*row_count-rings:index+i*row_count+rings,'resi_neighbor']=1
                     nb.extend(range(index+j*i*row_count-rings,index+j*i*row_count+rings+1,1))
             nb.remove(index)
