@@ -37,7 +37,8 @@ Update chengdu_poi_20151213
 -- Aggregate total counts into a new table
 Drop table cd_residentialgrids_weibocount;
 Create table cd_residentialgrids_weibocount as 
-	select r.gid, sum(p.checkin_nu) as count
+	select r.gid, sum(p.checkin_nu) as count, 
+	r.geom
 	from chengdu_poi_20151213 as p
 	right outer join cd_residentialgrids r
 	on p.resi_gid = r.gid
@@ -45,7 +46,7 @@ Create table cd_residentialgrids_weibocount as
 	; 
 
 -- Replace nulls
-select COALESCE( NULLIF(cd_residentialgrids_weibocount.count,Null) , '0' ) from 
+select COALESCE( NULLIF(cd_residentialgrids_weibocount.count,Null) , '0' ) from cd_residentialgrids_weibocount;
 
 select UpdateGeometrySRID('public','cd_weibo_poi_points','the_geom',4326);
 select UpdateGeometrySRID('public','cd_residentialgrids','geom',4326);
