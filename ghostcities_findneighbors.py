@@ -14,8 +14,7 @@ from sqlalchemy import *
 from sqlalchemy import create_engine
 
 def main():
-    engine = create_engine('postgresql://wenfei:xj32MYNt3q4jaH@52.23.144.14:5432/stl')
-    # engine = create_engine('postgresql://mike:pbkqa0pfjd@52.23.144.14:5432/stl')
+    engine = create_engine('postgresql://wenfei:**/stl')
 
     CD_Grids = pd.read_sql_query('SELECT * FROM cd_residentialgrids_all_feb4',con=engine)
 
